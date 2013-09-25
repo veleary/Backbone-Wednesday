@@ -1,3 +1,7 @@
+(function () {
 
-// Remove this line when you start working
-alert('Hello World!');
+  var task = new Task({ name: 'make a better todo list' });
+  var view = new TaskView({ model: task });
+  $('#todo-list').append( view.render().el );
+
+})();
