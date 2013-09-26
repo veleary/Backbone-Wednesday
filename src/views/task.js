@@ -2,6 +2,11 @@
 
   // model VIEW
   window.TaskView = Backbone.View.extend({
+
+    // By default, a view creates an empty div for its element.
+    // This tells backbone to set a class name on that empty div.
+    className: 'task',
+
     // This adds a property `template` to the TaskView prototype,
     // which is accessible inside any view via this.template
     template: _.getTemplate('task'),
