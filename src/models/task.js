@@ -7,4 +7,9 @@
     }
   });
 
+  // COLLECTION
+  window.Tasks = Backbone.Collection.extend({
+    model: Task
+  });
+
 })();

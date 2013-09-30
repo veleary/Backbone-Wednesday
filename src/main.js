@@ -1,11 +1,20 @@
 (function () {
 
-  var task = new Task({ name: 'make a better todo list' });
-  var view = new TaskView({ model: task });
-  $('#todo-list').append( view.render().el );
+  // Instantiate a new collection, initialized with data.
+  // NOTE that each object gets wrapped with a *backbone model*
+  window.tasks = new Tasks([
+    { name: 'create a todo list' },
+    { name: 'check boxes', complete: true },
+    { name: 'complete list' }
+  ]);
 
-  var taskTwo = new Task({ name: 'study collections' });
-  var viewTwo = new TaskView({ model: taskTwo });
-  $('#todo-list').append( viewTwo.render().el );
+  window.taskListView = new TaskListView({
+    collection: tasks,
+    el: $('#todo-list')
+  });
+
+  taskListView.render();
+
+  tasks.add({ name: 'newly added task' });
 
 })();
