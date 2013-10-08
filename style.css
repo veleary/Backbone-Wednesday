@@ -15,20 +15,27 @@ h1 {
   margin-bottom: 4px;
 }
 
-#todo-list .task {
+.new-task input {
+  font-size: 1.4em;
+}
+
+#task-list .task {
   font-size: 2em;
 }
-#todo-list .task:hover {
+
+#task-list .task label {
+  cursor: pointer;
+  padding: 0 5px;
+}
+#task-list .task label:hover {
   background: #70CDD4;
 }
-#todo-list .task label {
-  cursor: pointer;
-}
-#todo-list .task .check {
+
+#task-list .task .check {
   position: relative; top: -4px;
 }
 
-#todo-list .task.done label {
+#task-list .task.done label {
   text-decoration: line-through;
 }
 

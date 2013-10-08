@@ -1,6 +1,6 @@
 (function () {
 
-  // model VIEW
+  // SINGLE VIEW
   window.TaskView = Backbone.View.extend({
 
     // By default, a view creates an empty div for its element.
@@ -15,16 +15,18 @@
       'change .check': 'toggleComplete'
     },
 
+    initialize: function (options) {
+      // Listen to model changes and call our render function when they occur.
+      this.listenTo(this.model, 'change', this.render);
+    },
+
     toggleComplete: function (e) {
-      // Grab checked status from the triggering checkbox element
+      // Grab checked status from the checkbox element that caused the changed event
       var isChecked = $(e.currentTarget).is(':checked');
-      console.log('New check status:', this.model.get('complete'));
 
-      // Set the new complete status in our task model
+      // Set the new complete status in our task model.
+      // Since we're listening to changes, this will automatically call our render function.
       this.model.set({ complete: isChecked });
-
-      // Toggle the 'done' class so we can properly style via css
-      $(this.el).toggleClass('done', isChecked);
     },
 
     render: function () {
@@ -32,13 +34,13 @@
       var newHtml = this.template( this.model.toJSON() );
       $(this.el).html(newHtml);
 
-      // Toggle the 'done' class and checkbox based on our model's complete state
+      // Grab the complete status of the task
       var isChecked = this.model.get('complete');
-      $(this.el).find('.check').prop('checked', isChecked);
-      $(this.el).toggleClass('done', isChecked);
 
-      // Return the view so we other code can chain stuff if it needs to
-      return this;
+      // Toggle the 'done' class based on our model's complete state
+      $(this.el).find('.check').prop('checked', isChecked);
+      // Toggle the checkbox based on our model's complete state
+      $(this.el).toggleClass('done', isChecked);
     }
   });
 
