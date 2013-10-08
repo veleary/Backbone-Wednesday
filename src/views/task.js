@@ -12,16 +12,19 @@
     template: _.getTemplate('task'),
 
     events: {
-      'change .complete': 'toggleComplete'
+      'change .check': 'toggleComplete'
     },
 
     toggleComplete: function (e) {
       // Grab checked status from the triggering checkbox element
       var isChecked = $(e.currentTarget).is(':checked');
+      console.log('New check status:', this.model.get('complete'));
 
       // Set the new complete status in our task model
       this.model.set({ complete: isChecked });
-      console.log('New check status:', this.model.get('complete'));
+
+      // Toggle the 'done' class so we can properly style via css
+      $(this.el).toggleClass('done', isChecked);
     },
 
     render: function () {
@@ -29,8 +32,10 @@
       var newHtml = this.template( this.model.toJSON() );
       $(this.el).html(newHtml);
 
-      // Toggle chekbox based on our model's complete state
-      $(this.el).find('.complete').prop('checked', this.model.get('complete'));
+      // Toggle the 'done' class and checkbox based on our model's complete state
+      var isChecked = this.model.get('complete');
+      $(this.el).find('.check').prop('checked', isChecked);
+      $(this.el).toggleClass('done', isChecked);
 
       // Return the view so we other code can chain stuff if it needs to
       return this;
