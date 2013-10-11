@@ -1,14 +1,14 @@
 (function(){
 	window.StoreView = Backbone.View.extend({
 		initialize: function(options){
-			
-			this.listenTo(this.collection, 'add', onProductAdd);
+
+			this.listenTo(this.collection, 'add', this.onProductAdd);
 		},
 
 		onProductAdd: function(newProduct){
-			var newProductView = new ProductView({model: newProduct});
+			newProductView = new ProductView({model: newProduct});
 			newProductView.render();
-			$(this.el).html(newProductView.el);
+			$(this.el).append(newProductView.el);
 		}
 	});
 
