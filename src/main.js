@@ -19,6 +19,7 @@
 		console.log('Adding', product.get('name'), 'to cart collection');
 		this.add(product);
 		console.log('New cart size', this.length);
+		console.log(cart-)
 	});
 
 	
