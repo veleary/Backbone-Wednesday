@@ -15,7 +15,7 @@
 		{ name: 'Product 2', price: "$30.00" }
 	]);
 
-	cart.listenTo(userEvents, 'add-to-cart', function(product){
+	cart.listenTo(userEvents, 'add-to-cart', function (product, x){
 		console.log('Adding', product.get('name'), 'to cart collection');
 		this.add(product);
 		console.log('New cart size', this.length);

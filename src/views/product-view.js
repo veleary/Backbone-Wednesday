@@ -4,12 +4,13 @@
   
   window.ProductView = Backbone.View.extend({
     events:{
-      'click .add': 'addToCart'
+      'click .add' : 'addToCart',
+      // 'click .remove' : 'removeFromCart'
     },
 
     addToCart: function(){
       var newClone = this.model.clone();
-      userEvents.trigger( 'add-to-cart', newClone)
+      userEvents.trigger( 'add-to-cart', newClone, 7)
     },
 
     render: function(){
