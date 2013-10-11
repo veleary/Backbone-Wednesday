@@ -1,3 +1,14 @@
+(function(){
+	var inventory = new Inventory();
+	var inventoryListView = new StoreView({
+		collection: inventory,
+		el: 'store'
+	});
 
-// Remove this line when you start working
-alert('Hello World!');
+
+	inventory.add([
+		{name: 'Product 1', price: "$25.00"},
+		{name: 'Product 2', price: "$30.00" }
+	]);
+
+})();
